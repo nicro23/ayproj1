@@ -39,8 +39,8 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 	private Hashtable<Long,TuioDemoBlob> blobList = new Hashtable<Long,TuioDemoBlob>();
 
 	public static final int finger_size = 15;
-	public static final int object_size = 60;
-	public static final int table_size = 760;
+	public static final int object_size = 1;
+	public static final int table_size = 7600;
 	
 	public static int width, height;
 	private float scale = 1.0f;
@@ -139,10 +139,10 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 	}
 
 	public class test{
-		BufferedImage test;
+		public static BufferedImage test;
 		public test(){
 			try {
-				test = ImageIO.read(getClass().getResource("/resources/test.png"));
+				test = ImageIO.read(getClass().getResource("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\test.jpg"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
@@ -151,14 +151,14 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 		}
 	}
 	public void update(Graphics g) {
-	
+
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
-		g2.setColor(Color.yellow);
+		g2.drawImage(test.test,null,0,0);
 		g2.fillRect(0,0,width,height);
-	
+
 		int w = (int)Math.round(width-scale*finger_size/2.0f);
 		int h = (int)Math.round(height-scale*finger_size/2.0f);
 		

@@ -32,8 +32,8 @@ import TUIO.*;
 
 public class TuioDemo  {
 
-	private final int window_width  = 640;
-	private final int window_height = 480;
+	private final int window_width  = 1080;
+	private final int window_height = 1920;
 
 	private boolean fullscreen = false;
 	

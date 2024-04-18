@@ -10,7 +10,7 @@ public class JPanelExample {
 
         JPanel panel = new JPanel();
 
-        BufferedImage image = ImageIO.read(new File("/resources/test.png"));
+        BufferedImage image = ImageIO.read(new File("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\test.jpg"));
         JLabel label = new JLabel(new ImageIcon(image));
         panel.add(label);
 

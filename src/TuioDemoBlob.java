@@ -59,7 +59,7 @@ public class TuioDemoBlob extends TuioBlob {
 		g.setPaint(Color.black);
 		g.fill(s);
 		g.setPaint(Color.white);
-		g.drawString(blob_id+"",Xpos-10,Ypos);
+		g.drawString(blob_id+"this is a blob",Xpos-10,Ypos);
 	}
 
 	public void update(TuioBlob tblb) {
