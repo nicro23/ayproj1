@@ -39,20 +39,21 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 	private Hashtable<Long,TuioDemoBlob> blobList = new Hashtable<Long,TuioDemoBlob>();
 
 	public static final int finger_size = 15;
-	public static final int object_size = 1;
-	public static final int table_size = 7600;
+	public static final int object_size = 60;
+	public static final int table_size = 760;
 	
 	public static int width, height;
 	private float scale = 1.0f;
 	public boolean verbose = false;
-			
+
+	//n/a
 	public void setSize(int w, int h) {
 		super.setSize(w,h);
 		width = w;
 		height = h;
 		scale  = height/(float)TuioDemoComponent.table_size;	
 	}
-	
+	//adds obj to hashtable
 	public void addTuioObject(TuioObject tobj) {
 		TuioDemoObject demo = new TuioDemoObject(tobj);
 		objectList.put(tobj.getSessionID(),demo);
@@ -62,7 +63,7 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 	}
 
 	public void updateTuioObject(TuioObject tobj) {
-
+		//gets the Tdemoobject of the input Tobject from the hashtable
 		TuioDemoObject demo = (TuioDemoObject)objectList.get(tobj.getSessionID());
 		demo.update(tobj);
 		
@@ -156,7 +157,7 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
-		g2.drawImage(test.test,null,0,0);
+		g2.setColor(Color.blue);
 		g2.fillRect(0,0,width,height);
 
 		int w = (int)Math.round(width-scale*finger_size/2.0f);
