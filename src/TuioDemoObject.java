@@ -36,21 +36,18 @@ public class TuioDemoObject extends TuioObject {
 	//test change from shape to image
 	private Shape triangle;
 	//private Image triangle;
-
 	public TuioDemoObject(TuioObject tobj) {
 		super(tobj);
 		int size = TuioDemoComponent.object_size;
-		//triangle = new ImageIcon("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\test.png").getImage();
+		triangle = new Rectangle2D.Float(-size/2,-size/2,size,size);
 		int x = getSymbolID();
-		if(x == 25) {
-			AffineTransform transform = new AffineTransform();
-			transform.translate(xpos, ypos);
-			transform.rotate(angle, xpos, ypos);
-			//test remove this line
-			triangle = transform.createTransformedShape(triangle);
-		}
+		AffineTransform transform = new AffineTransform();
+		transform.translate(xpos, ypos);
+		transform.rotate(angle, xpos, ypos);
+		//test remove this line
+		triangle = transform.createTransformedShape(triangle);
+
 	}
-	
 	public void paint(Graphics2D g, int width, int height) {
 
 		float Xpos = xpos*width;
@@ -62,11 +59,14 @@ public class TuioDemoObject extends TuioObject {
 		trans.translate(Xpos,Ypos);
 		trans.scale(scale,scale);
 		//creates the rectangle?
-		//Shape s = trans.createTransformedShape(triangle);
+		Shape s = trans.createTransformedShape(triangle);
 
 		//colors the rectangle
+		g.setPaint(Color.red);
+		g.fill(s);
 		g.setPaint(Color.blue);
-		//g.fill(s);
+		g.drawString(symbol_id+"",Xpos-10,Ypos);
+
 		int x = getSymbolID();
 		if(x == 25) {
 			Image image;
@@ -84,12 +84,12 @@ public class TuioDemoObject extends TuioObject {
 
 		if ((dx!=0) || (dy!=0)) {
 			AffineTransform trans = AffineTransform.getTranslateInstance(dx,dy);
-			//triangle = trans.createTransformedShape(triangle);
+			triangle = trans.createTransformedShape(triangle);
 		}
 		
 		if (da!=0) {
 			AffineTransform trans = AffineTransform.getRotateInstance(da,tobj.getX(),tobj.getY());
-			//triangle = trans.createTransformedShape(triangle);
+			triangle = trans.createTransformedShape(triangle);
 		}
 
 		super.update(tobj);

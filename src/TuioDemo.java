@@ -30,10 +30,10 @@ import java.util.*;
 import javax.swing.*;
 import TUIO.*;
 
-public class TuioDemo  {
+public class 	TuioDemo  {
 
-	private final int window_width  = 1080;
-	private final int window_height = 1920;
+	private final int window_width  = 720;
+	private final int window_height = 480;
 
 	private boolean fullscreen = false;
 	
@@ -53,7 +53,7 @@ public class TuioDemo  {
 	public TuioListener getTuioListener() {
 		return demo;
 	}
-	
+	//if you want to change background
 	public void setupWindow() {
 	
 		frame = new JFrame();
@@ -117,8 +117,9 @@ public class TuioDemo  {
 		
 		TuioDemo demo = new TuioDemo();
 		TuioClient client = null;
- 
+
 		switch (argv.length) {
+
 			case 1:
 				try { 
 					client = new TuioClient( Integer.parseInt(argv[0])); 
@@ -127,6 +128,7 @@ public class TuioDemo  {
 					System.exit(0);
 				}
 				break;
+			//the code that runs
 			case 0:
 				client = new TuioClient();
 				break;
@@ -135,7 +137,7 @@ public class TuioDemo  {
 				System.exit(0);
 				break;
 		}
-		
+		//the code that runs
 		if (client!=null) {
 			client.addTuioListener(demo.getTuioListener());
 			client.connect();
