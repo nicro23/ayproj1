@@ -27,6 +27,9 @@ import javax.swing.*;
 import java.awt.geom.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import TUIO.*;
 
@@ -39,12 +42,23 @@ public class TuioDemoObject extends TuioObject {
 	public TuioDemoObject(TuioObject tobj) {
 		super(tobj);
 		int size = TuioDemoComponent.object_size;
-		triangle = new Rectangle2D.Float(-size/2,-size/2,size,size);
 		int x = getSymbolID();
+		//testing to make square same size as image
+		if(x == 0 || x == 1) {
+			/*BufferedImage img = null;
+			try {
+				img = ImageIO.read(new File("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\sspoon.png"));
+			} catch (IOException e) {
+			}*/
+			triangle = new Rectangle2D.Float(-size/2,-size/2,1,1);
+		}
+		else {
+			triangle = new Rectangle2D.Float(-size / 2, -size / 2, size, size);
+		}
 		AffineTransform transform = new AffineTransform();
 		transform.translate(xpos, ypos);
 		transform.rotate(angle, xpos, ypos);
-		//test remove this line
+		//tested removing this line
 		triangle = transform.createTransformedShape(triangle);
 
 	}
@@ -64,15 +78,20 @@ public class TuioDemoObject extends TuioObject {
 		//colors the rectangle
 		g.setPaint(Color.red);
 		g.fill(s);
+
 		g.setPaint(Color.blue);
 		g.drawString(symbol_id+"",Xpos-10,Ypos);
-
+		//shows image if id is = 25
 		int x = getSymbolID();
-		if(x == 25) {
+		if(x == 0) {
 			Image image;
-			image=new ImageIcon("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\sspoon.png").getImage();
-			g.setPaint(Color.black);
-			g.drawImage(image,150,150,null);
+			image=new ImageIcon(".\\src\\resources\\spoon1.png").getImage();
+			g.drawImage(image,(int)Xpos,(int)Ypos,null);
+		}
+		if(x == 1) {
+			Image image;
+			image=new ImageIcon(".\\src\\resources\\fork1.png").getImage();
+			g.drawImage(image,(int)Xpos,(int)Ypos,null);
 		}
 	}
 
@@ -81,12 +100,11 @@ public class TuioDemoObject extends TuioObject {
 		float dx = tobj.getX() - xpos;
 		float dy = tobj.getY() - ypos;
 		float da = tobj.getAngle() - angle;
-
+		//testing to see if this is responsible for updating position of object
 		if ((dx!=0) || (dy!=0)) {
 			AffineTransform trans = AffineTransform.getTranslateInstance(dx,dy);
 			triangle = trans.createTransformedShape(triangle);
 		}
-		
 		if (da!=0) {
 			AffineTransform trans = AffineTransform.getRotateInstance(da,tobj.getX(),tobj.getY());
 			triangle = trans.createTransformedShape(triangle);

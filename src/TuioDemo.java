@@ -26,14 +26,17 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import TUIO.*;
 
 public class 	TuioDemo  {
 
-	private final int window_width  = 720;
-	private final int window_height = 480;
+	private final int window_width  = 1200;
+	private final int window_height = 800;
 
 	private boolean fullscreen = false;
 	
@@ -54,8 +57,9 @@ public class 	TuioDemo  {
 		return demo;
 	}
 	//if you want to change background
+
 	public void setupWindow() {
-	
+
 		frame = new JFrame();
 		frame.add(demo);
 
@@ -63,9 +67,9 @@ public class 	TuioDemo  {
 		frame.setResizable(false);
 
 		frame.addWindowListener( new WindowAdapter() { public void windowClosing(WindowEvent evt) {
-				System.exit(0);
-			} });
-		
+			System.exit(0);
+		} });
+
 		frame.addKeyListener( new KeyAdapter() { public void keyPressed(KeyEvent evt) {
 			if (evt.getKeyCode()==KeyEvent.VK_ESCAPE) System.exit(0);
 			else if (evt.getKeyCode()==KeyEvent.VK_F1) {
@@ -77,16 +81,16 @@ public class 	TuioDemo  {
 			else if (evt.getKeyCode()==KeyEvent.VK_V) demo.verbose=!demo.verbose;
 		} });
 	}
-	
+
 	public void destroyWindow() {
-	
+
 		frame.setVisible(false);
 		if (fullscreen) {
-			device.setFullScreenWindow(null);		
+			device.setFullScreenWindow(null);
 		}
 		frame = null;
 	}
-	
+
 	public void showWindow() {
 	
 		if (fullscreen) {

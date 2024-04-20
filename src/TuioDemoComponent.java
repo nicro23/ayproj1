@@ -26,6 +26,7 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import javax.imageio.ImageIO;
@@ -138,27 +139,17 @@ public class TuioDemoComponent extends JComponent implements TuioListener {
 	public void paint(Graphics g) {
 		update(g);
 	}
-
-	public class test{
-		public static BufferedImage test;
-		public test(){
-			try {
-				test = ImageIO.read(getClass().getResource("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\test.jpg"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
 	public void update(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-
-		g2.setColor(Color.blue);
-		g2.fillRect(0,0,width,height);
+		//changing background from color to image
+		Image image;
+		image=new ImageIcon("C:\\Users\\Zanatii\\Downloads\\reacTIVision\\AYproj1\\src\\resources\\test2.png").getImage();
+		g.drawImage(image,0,0,null);
+		//g2.setColor(Color.blue);
+		//g2.fillRect(0,0,width,height);
 
 		int w = (int)Math.round(width-scale*finger_size/2.0f);
 		int h = (int)Math.round(height-scale*finger_size/2.0f);
